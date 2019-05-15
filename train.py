@@ -16,13 +16,14 @@ from torch.optim import lr_scheduler
 from Capsules import PrimaryCaps, ConvCaps
 from utils import get_args, get_dataloader
 
+
 class CapsNet(nn.Module):
-    def __init__(self,A=32,B=32,C=32,D=32, E=10,r = 3):
+    def __init__(self, A=32, B=32, C=32, D=32, E=10, r=3):
         super(CapsNet, self).__init__()
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=A,
                                kernel_size=5, stride=2)
-        self.primary_caps = PrimaryCaps(A,B)
-        self.convcaps1 = ConvCaps(B, C, kernel = 3, stride=2,iteration=r,
+        self.primary_caps = PrimaryCaps(A, B)
+        self.convcaps1 = ConvCaps(B, C, kernel=3, stride=2,iteration=r,
                                   coordinate_add=False, transform_share = False)
         self.convcaps2 = ConvCaps(C, D, kernel = 3, stride=1,iteration=r,
                                   coordinate_add=False, transform_share = False)

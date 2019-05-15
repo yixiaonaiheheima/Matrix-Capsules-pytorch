@@ -24,6 +24,7 @@ from torchvision import datasets, transforms
 #                 target_height_slice, target_width_slice]
 #    return shifted_image.float()
 
+
 def get_dataloader(args):
     # MNIST Dataset
     train_dataset = datasets.MNIST(root='./data/',
@@ -54,10 +55,10 @@ def get_args():
     parser.add_argument('-num_epochs', type=int, default=1)
     parser.add_argument('-lr', type=float, default=2e-2)
     parser.add_argument('-clip', type=float, default=5)
-    parser.add_argument('-r', type=int, default=3)
+    parser.add_argument('-r', type=int, default=1)
     parser.add_argument('-disable_cuda', action='store_true',
                     help='Disable CUDA')
-    parser.add_argument('-print_freq', type=int, default=10)
+    parser.add_argument('-print_freq', type=int, default=5)
     parser.add_argument('-pretrained', type=str, default="")
     parser.add_argument('-gpu', type=int, default=0, help = "which gpu to use") 
     args = parser.parse_args()
@@ -68,9 +69,9 @@ def get_args():
 
 if __name__ == "__main__":
     args = get_args()
-    loader,_ = get_dataloader(args)
+    loader, _ = get_dataloader(args)
     print(len(loader.dataset))
     for data in loader:
-        x,y = data
-        print(x[0,0,:,:])
+        x, y = data
+        print(x.shape)
         break
